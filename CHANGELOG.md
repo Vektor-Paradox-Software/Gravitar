@@ -8,6 +8,10 @@ milestones until 1.0; after 1.0, semver.
 Entries added since the last release tag. Promote to a dated section when a
 release is cut.
 
+## [0.1.0] — 2026-11-05
+
+First public release.
+
 ### Added — Benchmark harness
 - **R0** — dev-only harness under `benchmarks/` with per-finding TP/FP/FN
   classification, cause-tag attribution, and `--format`-aware report
@@ -98,4 +102,5 @@ release is cut.
 
 See individual commit messages for ticket-level detail.
 
-[Unreleased]: https://github.com/vektor-paradox-software/Gravitar/compare/HEAD...HEAD
+[Unreleased]: https://github.com/vektor-paradox-software/Gravitar/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/vektor-paradox-software/Gravitar/releases/tag/v0.1.0
