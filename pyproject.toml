@@ -65,6 +65,7 @@ ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
 
 [tool.coverage.run]
 source = ["src/gravitar"]
