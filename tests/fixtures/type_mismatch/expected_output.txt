@@ -1,0 +1,11 @@
+gravitar: drift detected — 1 findings
+
+  error  type_mismatch  invoices.total_cents
+         model: numeric(10,2)
+         migration: integer
+         → decide which is authoritative, then align the other
+         id: dd4dee637a96
+
+summary: 1 errors, 0 warnings, 0 review across 1 tables
+
+coverage: 1/1 revisions fully resolved · 0 partial · 0 skipped

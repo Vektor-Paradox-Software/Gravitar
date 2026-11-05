@@ -1,0 +1,3 @@
+gravitar: no drift detected (1 tables, 2 columns analyzed)
+
+coverage: 1/1 revisions fully resolved · 0 partial · 0 skipped

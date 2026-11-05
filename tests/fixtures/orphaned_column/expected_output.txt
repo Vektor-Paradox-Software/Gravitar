@@ -1,0 +1,10 @@
+gravitar: drift detected — 1 findings
+
+  error  orphaned_column  gadgets.internal_flag
+         migration adds column, no model declares it
+         → add the column to the model, or drop it in a migration
+         id: 0db0051262c0
+
+summary: 1 errors, 0 warnings, 0 review across 1 tables
+
+coverage: 1/1 revisions fully resolved · 0 partial · 0 skipped

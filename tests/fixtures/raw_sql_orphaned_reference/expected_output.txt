@@ -1,0 +1,10 @@
+gravitar: drift detected — 1 findings
+
+  warning  orphaned_reference  ghost_table.nickname
+         revision '0001' contains raw SQL recognized as 'sql:add_column', but 'ghost_table.nickname' is not present in the schema state Gravitar has built so far
+         → check for a typo, or a table/column created outside migrations Gravitar can see
+         id: b3790cf241b8
+
+summary: 0 errors, 1 warnings, 0 review across 1 tables
+
+coverage: 1/1 revisions fully resolved · 0 partial · 0 skipped

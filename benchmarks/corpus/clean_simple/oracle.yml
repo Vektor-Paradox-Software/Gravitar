@@ -1,0 +1,4 @@
+# Oracle for the clean_simple project. Captured once from a
+# hypothetical hand-run of Alembic autogenerate against a fresh
+# Postgres DB; no drift expected.
+findings: []

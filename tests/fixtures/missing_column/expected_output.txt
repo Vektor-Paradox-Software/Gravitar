@@ -1,0 +1,10 @@
+gravitar: drift detected — 1 findings
+
+  error  missing_column  widgets.deleted_at
+         model declares column, no migration adds it
+         → add a migration: alembic revision --autogenerate -m "add widgets.deleted_at"
+         id: 23533e5230ea
+
+summary: 1 errors, 0 warnings, 0 review across 1 tables
+
+coverage: 1/1 revisions fully resolved · 0 partial · 0 skipped

@@ -1,0 +1,29 @@
+name: schema drift check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  gravitar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Gravitar imports your models package directly (to read SQLAlchemy's
+      # metadata), so your project's own dependencies must be installed too —
+      # not just Gravitar itself.
+      - name: Install project dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Gravitar
+        run: pip install gravitar
+
+      - name: Check for schema drift
+        run: gravitar check

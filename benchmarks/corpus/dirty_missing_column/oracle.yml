@@ -1,0 +1,7 @@
+# Oracle for the dirty_missing_column project.
+# Model declares `widgets.deleted_at`; no migration adds it.
+findings:
+  - category: missing_column
+    table: widgets
+    column: deleted_at
+    note: "model declares deleted_at; no migration adds it"

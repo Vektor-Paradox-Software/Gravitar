@@ -1,0 +1,10 @@
+gravitar: drift detected — 1 findings
+
+  warning  broken_chain
+         revision '0001' contains raw SQL (op.execute) that Gravitar cannot analyze; any table may be affected
+         → review this migration by hand to confirm it doesn't introduce undetected drift
+         id: 49ed431c0650
+
+summary: 0 errors, 1 warnings, 0 review across 0 tables
+
+coverage: 1/1 revisions fully resolved · 0 partial · 0 skipped

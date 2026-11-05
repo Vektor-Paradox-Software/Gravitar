@@ -1,0 +1,61 @@
+# .gravitar.yml — all fields optional; shown values are defaults
+
+models:
+  # Python import path(s) to package(s) containing SQLAlchemy declarative models
+  paths:
+    - "models"
+    - "app.models"
+  # SQLAlchemy declarative_base variable name(s) to inspect
+  # If unspecified, Gravitar discovers all DeclarativeMeta subclasses
+  base_classes: []
+
+alembic:
+  # Path to alembic.ini, relative to repo root
+  config: "alembic.ini"
+  # Override the script_location from alembic.ini if set
+  script_location: null
+  # No-ini mode: point directly at the versions directory. Overrides both
+  # 'config' and 'script_location'. Useful for Flask-Migrate projects that
+  # ship no alembic.ini.
+  versions_dir: null
+
+checks:
+  # Enable/disable individual drift categories (all enabled by default)
+  missing_table: true
+  missing_column: true
+  type_mismatch: true
+  nullability_mismatch: true
+  orphaned_column: true
+  orphaned_reference: true
+  broken_chain: true
+
+exclude:
+  # Tables to skip entirely (glob patterns)
+  tables: []
+  # Columns to skip (format: "table.column", glob patterns)
+  columns: []
+
+output:
+  # Default output format: "text", "json", or "sarif"
+  format: "text"
+  # Suppress the summary line at the end of text output
+  quiet: false
+
+# Optional ProjectUnit multi-tree analysis (SPEC-16 R10). The top-level
+# models/alembic/django above still runs as the primary tree; each entry
+# below is analyzed in addition and findings are aggregated. Useful for
+# repos such as CTFd (core + plugins) or Django monorepos (one Django
+# app per tree).
+# trees:
+#   - name: plugin_scoring
+#     models:
+#       paths: ["plugins.scoring.models"]
+#     alembic:
+#       versions_dir: "plugins/scoring/migrations/versions"
+
+# Optional custom-type aliases (SPEC-16 R13). Pin a project-local type
+# name (TypeDecorator class or AST reference) to its canonical type
+# string so unmapped custom types stop reading as type_mismatch.
+# types:
+#   JsonBlob: json
+#   PasswordHash: "varchar(60)"

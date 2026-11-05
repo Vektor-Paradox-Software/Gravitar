@@ -1,0 +1,10 @@
+gravitar: drift detected — 1 findings
+
+  error  broken_chain
+         revision '0001' references down_revision '0000_never_existed', which does not exist
+         → check for a deleted, renamed, or unmerged migration file
+         id: af49fe4e6557
+
+summary: 1 errors, 0 warnings, 0 review across 0 tables
+
+coverage: 1/1 revisions fully resolved · 0 partial · 0 skipped

@@ -1,0 +1,57 @@
+# Benchmark harness manifest. SPEC-16 R0.
+#
+# Paths are resolved relative to `benchmarks/`. Each entry lists one
+# project to analyze. v1 ships two self-test entries so a fresh clone
+# can run `python benchmarks/run.py` and get a passing report; the
+# real-world corpus (Airflow, MLflow, Mealie, Prefect, CTFd, etc.)
+# is added by pointing at local clones at pinned commits.
+#
+# Entry shape:
+#   name:              short identifier used in file paths
+#   project_path:      directory `gravitar check` runs against
+#   oracle:            path to a static YAML oracle (relative to benchmarks/)
+#   oracle_runner:     "static" (default) or "postgres" (not yet implemented)
+#   gravitar_config:   optional path to a .gravitar.yml for the project
+#   oracle_scope:
+#     types:           false if the oracle is from a SQLite DB (reflection
+#                      collapses types; type_mismatch is excluded from scoring)
+#   notes:             free-text context shown in REPORT.md
+
+projects:
+  - name: clean_simple
+    project_path: corpus/clean_simple
+    oracle: corpus/clean_simple/oracle.yml
+    notes: "self-test corpus: fully resolved, zero drift"
+
+  - name: dirty_missing_column
+    project_path: corpus/dirty_missing_column
+    oracle: corpus/dirty_missing_column/oracle.yml
+    notes: "self-test corpus: one known missing_column drift"
+
+# Real-world entries (5 projects from the 2026-10-07 run). Uncomment when
+# a local clone is available
+# at the pinned commit AND an oracle file has been authored from the
+# Postgres autogenerate run.
+#
+#  - name: airflow
+#    project_path: /path/to/airflow@<sha>
+#    oracle: oracles/airflow.yml
+#    oracle_scope: { types: true }
+#    notes: "airflow <sha> — SPEC-16 R0 baseline project 1/5"
+
+# ---------------------------------------------------------------------
+# SPEC-18 ProjectUnits for the Postgres oracle harness.
+# Separate top-level key from `projects:` on purpose — the two harnesses
+# answer different questions. T0 only needs these parsed and listed;
+# T1+ fill in the actual oracle execution.
+oracle_units:
+  - project: smoketest
+    unit: self-test
+    tree_path: corpus/dirty_missing_column
+    metadata_import: "models:Base.metadata"
+    env_var: SMOKETEST_DATABASE_URL
+    dialects: ["postgres"]
+    python: "3.11"
+    lockfile: locks/smoketest/self-test/requirements.txt
+    extras:
+      notes: "placeholder unit for T0 skeleton; no real oracle yet"

@@ -1,0 +1,68 @@
+# Python bytecode (``.pyo``/``.pyd`` already covered by ``*.py[cod]``).
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Packaging
+build/
+dist/
+wheels/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Test and analysis artifacts
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+
+# Type checking and linting
+.mypy_cache/
+.ruff_cache/
+
+# Local, per-repo feedback.sqlite — analyzed-repo-specific and never meant
+# to be committed.
+.gravitar/
+
+# Local SQLite / DB files. Pre-flight confirmed no tracked fixtures
+# use these extensions; the only on-disk matches live inside
+# ``.mypy_cache/`` (already ignored).
+*.sqlite
+*.sqlite3
+*.db
+
+# Environment variables and local secrets. ``.env.example`` stays
+# tracked (future-proofing — none exists today, but if one is added
+# later it should document placeholders, not read as a leak).
+.env
+.env.*
+!.env.example
+
+# Local editor and operating system files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local logs
+*.log
+
+# Local AI development worktrees — ``.claude/worktrees/`` holds the
+# disposable Claude Code worktrees created during development.
+.claude/worktrees/
+
+# Word-doc working copies kept locally.
+*.docx
+
+# Benchmark run outputs. The `baseline/` directory IS
+# committed (it's the canonical reference); everything else is
+# ephemeral per-run output.
+benchmarks/results/*
+!benchmarks/results/.gitkeep
+!benchmarks/results/baseline/

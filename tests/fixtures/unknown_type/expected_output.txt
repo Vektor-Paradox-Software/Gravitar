@@ -1,0 +1,10 @@
+gravitar: drift detected — 1 findings
+
+  warning  unknown_type  wallets.balance
+         column type could not be normalized on at least one side
+         → inspect the underlying type by hand; comparison isn't possible
+         id: d6d5bf812255
+
+summary: 0 errors, 1 warnings, 0 review across 1 tables
+
+coverage: 1/1 revisions fully resolved · 0 partial · 0 skipped

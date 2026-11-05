@@ -1,0 +1,179 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Gravitar output v2 (SPEC-16 Amendment v1.1: notes, coverage, demote-when-explained)",
+  "type": "object",
+  "required": [
+    "gravitar_version",
+    "schema_version",
+    "status",
+    "summary",
+    "coverage",
+    "findings",
+    "notes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "gravitar_version": { "type": "string" },
+    "schema_version": { "const": 2 },
+    "status": { "enum": ["drift", "clean", "error"] },
+    "error": { "type": "string" },
+    "summary": {
+      "type": "object",
+      "required": ["tables_analyzed", "columns_analyzed", "errors", "warnings", "reviews"],
+      "additionalProperties": false,
+      "properties": {
+        "tables_analyzed": { "type": "integer", "minimum": 0 },
+        "columns_analyzed": { "type": "integer", "minimum": 0 },
+        "errors": { "type": "integer", "minimum": 0 },
+        "warnings": { "type": "integer", "minimum": 0 },
+        "reviews": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "required": [
+        "revisions_total",
+        "revisions_fully_resolved",
+        "revisions_partial",
+        "revisions_skipped"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "revisions_total": { "type": "integer", "minimum": 0 },
+        "revisions_fully_resolved": { "type": "integer", "minimum": 0 },
+        "revisions_partial": { "type": "integer", "minimum": 0 },
+        "revisions_skipped": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "category",
+          "severity",
+          "table",
+          "column",
+          "model_value",
+          "migration_value",
+          "message",
+          "suggestion",
+          "confidence",
+          "source",
+          "evidence",
+          "live_verified",
+          "kind",
+          "demoted_from",
+          "explaining_notes",
+          "finding_id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "enum": [
+              "missing_table",
+              "missing_column",
+              "type_mismatch",
+              "nullability_mismatch",
+              "orphaned_column",
+              "orphaned_reference",
+              "broken_chain",
+              "unknown_type"
+            ]
+          },
+          "severity": { "enum": ["error", "warning"] },
+          "table": { "type": ["string", "null"] },
+          "column": { "type": ["string", "null"] },
+          "model_value": {},
+          "migration_value": {},
+          "message": { "type": "string" },
+          "suggestion": { "type": ["string", "null"] },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "source": {
+            "type": "object",
+            "required": ["file", "line", "revision_id"],
+            "additionalProperties": false,
+            "properties": {
+              "file": { "type": "string" },
+              "line": { "type": ["integer", "null"] },
+              "revision_id": { "type": ["string", "null"] }
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["signal", "weight", "detail"],
+              "additionalProperties": false,
+              "properties": {
+                "signal": { "type": "string" },
+                "weight": { "type": "number" },
+                "detail": { "type": "string" }
+              }
+            }
+          },
+          "live_verified": { "type": "boolean" },
+          "kind": { "enum": ["fail", "review"] },
+          "demoted_from": { "enum": ["error", "warning", null] },
+          "explaining_notes": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "finding_id": { "type": "string" }
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "reason", "detail", "source", "tables", "columns"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "reason": {
+            "enum": [
+              "non_literal_table",
+              "non_literal_column",
+              "non_literal_attribute",
+              "type_unresolved",
+              "splat_args",
+              "loop_not_literal",
+              "conditional_branch",
+              "external_call",
+              "unrecognized_op",
+              "parse_error",
+              "unreadable_revision",
+              "dynamic_sql",
+              "django_op_unsupported",
+              "import_cycle"
+            ]
+          },
+          "detail": { "type": "string" },
+          "source": {
+            "type": "object",
+            "required": ["file", "line", "revision_id"],
+            "additionalProperties": false,
+            "properties": {
+              "file": { "type": "string" },
+              "line": { "type": ["integer", "null"] },
+              "revision_id": { "type": ["string", "null"] }
+            }
+          },
+          "tables": {
+            "oneOf": [
+              { "type": "null" },
+              { "type": "array", "items": { "type": "string" } }
+            ]
+          },
+          "columns": {
+            "oneOf": [
+              { "type": "null" },
+              { "type": "array", "items": { "type": "string" } }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

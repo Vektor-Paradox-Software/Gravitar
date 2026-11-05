@@ -1,0 +1,24 @@
+# Human-assigned cause tags for benchmark FP/FN items that the
+# harness's auto-attribution couldn't resolve. SPEC-16 R0 §Attribution:
+# `python benchmarks/run.py` exits non-zero if any FP/FN here is
+# missing a `cause` tag.
+#
+# Entry key format: "<project>|<outcome>|<category>|<table>|<column>"
+# (outcome ∈ fp_error, fp_warning, fn)
+#
+# Causes from the taxonomy:
+#   batch_op, class_form_type, type_alias, type_variant, custom_type,
+#   loop_or_helper, schema_qualified, pk_constraint_nullability,
+#   fk_typed_column, import_failure, unresolved_taint (auto-only),
+#   oracle_artifact, other (must carry a note:)
+
+entries: {}
+#
+# Example when a real-world project generates untagged items:
+#   entries:
+#     airflow|fp_error|type_mismatch|dag_run|conf:
+#       cause: custom_type
+#       note: "ExtendedJSON — SPEC-16 R13 custom_types pin needed"
+#     mlflow|fn|missing_column|runs|lifecycle_stage:
+#       cause: batch_op
+#       note: "inside a batch_alter_table pre-R1 the walker missed"
