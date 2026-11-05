@@ -230,7 +230,7 @@ def format_sarif(
                     "driver": {
                         "name": "gravitar",
                         "version": __version__,
-                        "informationUri": "https://github.com/VXP-Software/Gravitar",
+                        "informationUri": "https://github.com/vektor-paradox-software/Gravitar",
                         "rules": _RULES,
                     }
                 },

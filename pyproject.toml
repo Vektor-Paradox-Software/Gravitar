@@ -18,10 +18,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/VXP-Software/Gravitar"
-Repository = "https://github.com/VXP-Software/Gravitar"
-Issues = "https://github.com/VXP-Software/Gravitar/issues"
-Changelog = "https://github.com/VXP-Software/Gravitar/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/vektor-paradox-software/Gravitar"
+Repository = "https://github.com/vektor-paradox-software/Gravitar"
+Issues = "https://github.com/vektor-paradox-software/Gravitar/issues"
+Changelog = "https://github.com/vektor-paradox-software/Gravitar/blob/main/CHANGELOG.md"
 
 [project.scripts]
 gravitar = "gravitar.cli:main"

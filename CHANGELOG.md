@@ -98,4 +98,4 @@ release is cut.
 
 See individual commit messages for ticket-level detail.
 
-[Unreleased]: https://github.com/VXP-Software/Gravitar/compare/HEAD...HEAD
+[Unreleased]: https://github.com/vektor-paradox-software/Gravitar/compare/HEAD...HEAD
